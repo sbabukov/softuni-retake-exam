@@ -218,3 +218,66 @@ function softuni_display_product_details() {
 
 }
 add_shortcode( 'display_product_details', 'softuni_display_product_details' );
+
+
+/**
+ * Display other jobs from their company
+ *
+ * @param [type] $post
+ * @return void
+ */
+function softuni_display_all_product( $products_id ){
+    // проверка ако $products_id е празно - дали има постове, няма значение името на променливата
+    if ( empty( $products_id ) ){
+        return;
+    }
+    // масив с аргументите като на custom post type, избираме си какво ни трябва
+    $products_args = array(
+        'post_type'         => 'shop',
+        'orderby'           => 'name',
+        'post_status'       => 'publish',
+    );
+
+    // правим си wp query
+    $products_query = new WP_Query( $products_args );
+    
+    // var_dump( $products_query );
+    if (! empty( $products_query )) {
+        ?>
+            <ul class="products-listing">
+                <?php foreach( $products_query->posts as $product ) {?>
+                    <?php //var_dump( $product); ?>
+                    <li class="product-card">
+                <div class="product-primary">
+
+                            <!-- post_title го виждаме в куерито като се вардъмпне -->
+                            <h2 class="job-title"><a href="#"><?php echo $product->post_title; ?></a></h2>
+                            
+                            <div class="product-meta">
+                        <a class="meta-shockcode" href="#">Code: 650204111</a>
+                        <span class="meta-price">$ 179.99</span>
+                    </div>
+
+                    <div class="product-details product-details-table">
+                        <span>Type</span><span>Washing machine</span>	
+                        <span>Brand</span><span>HAIER</span>
+                        <span>Model</span><span>HW80-B14939-S</span>
+                    </div>
+                </div>
+                    <div class="product-logo">
+                        <div class="product-logo-box">
+                            <?php
+                                if ( has_post_thumbnail()){
+                                    the_post_thumbnail();
+                                } else {
+                                    echo '<img src="https://tweakers.net/i/59O1Ax8hVb5A9n84eopzib9jb6I=/i/2005419044.jpeg" alt="default image thumbnail">';			
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </li>
+                <?php } ?>
+            </ul>
+        <?php
+    }
+}

@@ -1,4 +1,4 @@
-single-shop.php
+
 <?php get_header(); ?>
 
 	<div class="product-single">
