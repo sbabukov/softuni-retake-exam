@@ -1,4 +1,4 @@
-INDEX.PHP
+
 <?php get_header(); ?>
 
 	<ul class="products-listing">
