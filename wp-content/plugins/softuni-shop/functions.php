@@ -98,47 +98,45 @@ function softuni_display_single_term( $post_id, $taxonomy) {
  *
  * @return void
  */
-function softuni_update_visit_count( $post_id = 0){
+function softuni_update_product_visit_count( $post_id = 0 ){
     if( empty($post_id) ){
         return;
     }
-    // взима постмета данните, подаваме постайди на метата 'visit_count' 
+
     $visit_count = get_post_meta( $post_id, 'visits_count', true);
+    // var_dump( $visit_count ); die();
     
     if( ! empty( $visit_count )) {
         $visit_count ++;
-        
-        // обновяваме постметата
         update_post_meta( $post_id, 'visits_count', $visit_count );
     } else {
         update_post_meta( $post_id, 'visits_count', 1 );
 
     }
-    var_dump($visit_count);
+    
 }
 
 
 /**
- * Display other jobs from their company
+ * Display other products from their company
  *
  * @param [type] $post
  * @return void
  */
 function softuni_display_other_product( $products_id ){
-    // проверка ако $products_id е празно - дали има постове, няма значение името на променливата
+    
     if ( empty( $products_id ) ){
         return;
     }
-    // масив с аргументите като на custom post type, избираме си какво ни трябва
+    
     $products_args = array(
         'post_type'         => 'shop',
         'orderby'           => 'name',
         'post_status'       => 'publish',
         'posts_per_page'    => 2,
-        // @TODO: set a taxonomy query
     );
 
-    // правим си wp query
+    
     $products_query = new WP_Query( $products_args );
     
     // var_dump( $products_query );
@@ -149,9 +147,7 @@ function softuni_display_other_product( $products_id ){
                     <?php //var_dump( $product); ?>
                     <li class="product-card">
                 <div class="product-primary">
-
-                            <!-- post_title го виждаме в куерито като се вардъмпне -->
-                            <h2 class="job-title"><a href="#"><?php echo $product->post_title; ?></a></h2>
+                    <h2 class="job-title"><a href="#"><?php echo $product->post_title; ?></a></h2>
                             
                             <div class="product-meta">
                         <a class="meta-shockcode" href="#">Code: 650204111</a>
@@ -227,18 +223,18 @@ add_shortcode( 'display_product_details', 'softuni_display_product_details' );
  * @return void
  */
 function softuni_display_all_product( $products_id ){
-    // проверка ако $products_id е празно - дали има постове, няма значение името на променливата
+    
     if ( empty( $products_id ) ){
         return;
     }
-    // масив с аргументите като на custom post type, избираме си какво ни трябва
+    
     $products_args = array(
         'post_type'         => 'shop',
         'orderby'           => 'name',
         'post_status'       => 'publish',
     );
 
-    // правим си wp query
+    
     $products_query = new WP_Query( $products_args );
     
     // var_dump( $products_query );
@@ -249,9 +245,7 @@ function softuni_display_all_product( $products_id ){
                     <?php //var_dump( $product); ?>
                     <li class="product-card">
                 <div class="product-primary">
-
-                            <!-- post_title го виждаме в куерито като се вардъмпне -->
-                            <h2 class="job-title"><a href="#"><?php echo $product->post_title; ?></a></h2>
+                    <h2 class="job-title"><a href="#"><?php echo $product->post_title; ?></a></h2>
                             
                             <div class="product-meta">
                         <a class="meta-shockcode" href="#">Code: 650204111</a>
