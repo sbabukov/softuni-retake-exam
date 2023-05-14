@@ -35,6 +35,42 @@ add_action( 'wp_ajax_nopriv_softuni_job_like', 'softuni_job_like' );
 add_action( 'wp_ajax_softuni_job_like', 'softuni_job_like' );
 
 
+
+/**
+ * This function change  title of post
+ *
+ * @param [type] $title
+ * @return void
+ */
+function change_title_of_post($title)
+{
+    
+    return $title . ' - Title of product.';
+}
+
+add_filter('the_title', 'change_title_of_post', 6);
+
+/**
+ * This function manipulating the post content 
+ *
+ * @param [type] $content
+ * @return void
+ */ 
+function change_my_content($content)
+{
+    
+    // $post_title = get_the_title(get_the_ID());
+    // $tweeter = '<a class="twitter-share-button" href="https://twitter.com/intent/tweet"> '.$post_title.'</a>';
+
+    // $content .= '<div>' . $tweeter . '</div>';
+    $content .= '<h4>Add plugin manipulating content</h4>';
+
+    return $content;
+}
+
+add_filter('the_content', 'change_my_content');
+
+
 /**
  * Display a single post term
  *
@@ -79,4 +115,69 @@ function softuni_update_visit_count( $post_id = 0){
 
     }
     var_dump($visit_count);
+}
+
+
+/**
+ * Display other jobs from their company
+ *
+ * @param [type] $post
+ * @return void
+ */
+function softuni_display_other_product( $products_id ){
+    // проверка ако $products_id е празно - дали има постове, няма значение името на променливата
+    if ( empty( $products_id ) ){
+        return;
+    }
+    // масив с аргументите като на custom post type, избираме си какво ни трябва
+    $products_args = array(
+        'post_type'         => 'shop',
+        'orderby'           => 'name',
+        'post_status'       => 'publish',
+        'posts_per_page'    => 2,
+        // @TODO: set a taxonomy query
+    );
+
+    // правим си wp query
+    $products_query = new WP_Query( $products_args );
+    
+    // var_dump( $products_query );
+    if (! empty( $products_query )) {
+        ?>
+            <ul class="products-listing">
+                <?php foreach( $products_query->posts as $product ) {?>
+                    <!-- <?php var_dump( $product); ?> -->
+                    <li class="product-card">
+                <div class="product-primary">
+
+                            <!-- post_title го виждаме в куерито като се вардъмпне -->
+                            <h2 class="job-title"><a href="#"><?php echo $product->post_title; ?></a></h2>
+                            
+                            <div class="product-meta">
+                        <a class="meta-shockcode" href="#">Code: 650204111</a>
+                        <span class="meta-price">$ 179.99</span>
+                    </div>
+
+                    <div class="product-details product-details-table">
+                        <span>Type</span><span>Washing machine</span>	
+                        <span>Brand</span><span>HAIER</span>
+                        <span>Model</span><span>HW80-B14939-S</span>
+                    </div>
+                </div>
+                    <div class="product-logo">
+                        <div class="product-logo-box">
+                            <?php
+                                if ( has_post_thumbnail()){
+                                    the_post_thumbnail();
+                                } else {
+                                    echo '<img src="https://tweakers.net/i/59O1Ax8hVb5A9n84eopzib9jb6I=/i/2005419044.jpeg" alt="default image thumbnail">';			
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </li>
+                <?php } ?>
+            </ul>
+        <?php
+    }
 }

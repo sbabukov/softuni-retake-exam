@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 
 <h1>Achive page for <?php the_archive_title(); ?></h1>
+<div class="author-bio"><?php echo the_author_meta( 'user_description'); ?></div>
 
     <ul class="products-listing">
 		

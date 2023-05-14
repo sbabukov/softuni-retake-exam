@@ -34,6 +34,9 @@ single-shop.php
 						<p>The i-Refresh function refreshes your clothes extremely effectively using innovative micro steam technology. In this way, odors, fine dust particles and allergens are removed, and creases in the laundry are also reduced.</p>
 						<h3>New generation technology</h3>
 						<p>This Haier washing machine uses digital internal scales to measure the weight of the laundry before automatically adjusting the water consumption and cycle time according to the amount of clothes you will be washing. The machine calculates the optimal settings according to the weight of each load, guaranteeing excellent results and minimal energy consumption thanks to the Direct Motion motor.</p>
+                        <h3>More product description</h3>
+                        <?php the_content(); ?>
+
 					</div>
 				</div>
 			</div>
@@ -56,52 +59,8 @@ single-shop.php
 	</div>
 
 	<h2 class="section-heading">Other related products:</h2>
-	<ul class="products-listing">
-		<li class="product-card">
-			<div class="product-primary">
-				<h2 class="product-title"><a href="#">HAIER HW80-B14939-S2 8.0 kg, 1400 rot/min</a></h2>
-				<div class="product-meta">
-					<a class="meta-shockcode" href="#">Code: 650204112</a>
-					<span class="meta-price">$ 179.99</span>
-				</div>
-				<div class="product-details product-details-table">
-					<span>Type</span><span>Washing machine</span>	
-					<span>Brand</span><span>HAIER</span>
-					<span>Model</span><span>HW80-B14939-S2</span>
-				</div>
-			</div>
-			<div class="product-logo">
-				<div class="product-logo-box">
-					<?php
-						if ( has_post_thumbnail()){
-							the_post_thumbnail();
-						} else {
-							echo '<img src="https://tweakers.net/i/59O1Ax8hVb5A9n84eopzib9jb6I=/i/2005419044.jpeg" alt="default image thumbnail">';			
-						}
-					?>
-				</div>
-			</div>
-		</li>
-
-		<li class="product-card">
-			<div class="product-primary">
-				<h2 class="product-title"><a href="#">HAIER HW80-B14939-S3 8.0 kg, 1400 rot/min</a></h2>
-				<div class="product-meta">
-					<a class="meta-shockcode" href="#">Code: 650204113</a>
-					<span class="meta-price">$ 179.99</span>
-				</div>
-				<div class="product-details product-details-table">
-					<span>Type</span><span>Washing machine</span>	
-					<span>Brand</span><span>HAIER</span>
-					<span>Model</span><span>HW80-B14939-S3</span>
-				</div>
-			</div>
-			<div class="product-logo">
-				<div class="product-logo-box">
-					<img src="images/washing-machine.jpg" alt="">
-				</div>
-			</div>
-		</li>
-	</ul>
+    <ul class="products-listing">
+        <?php echo softuni_display_other_product( get_the_ID() ); ?>
+    </ul>
 
 <?php get_footer(); ?>
