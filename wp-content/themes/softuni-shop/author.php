@@ -1,7 +1,8 @@
-INDEX.PHP
 <?php get_header(); ?>
 
-	<ul class="products-listing">
+<h1>Achive page for <?php the_archive_title(); ?></h1>
+
+    <ul class="products-listing">
 		
 		<?php if (have_posts()): ?>
 			<?php while (have_posts()): the_post(); ?>

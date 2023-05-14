@@ -8,3 +8,16 @@ function softuni_assets(){
         filemtime( get_template_directory(). '/assets/css/master.css' ));
 }
 add_action( 'wp_enqueue_scripts', 'softuni_assets' );
+
+/**
+ * Taking care our custom menu
+ *
+ * @return void
+ */
+function softuni_register_nav_menu(){
+    register_nav_menus( array(
+        'primary_menu' => __( 'Primary Menu', 'softuni' ),
+        'footer_menu'  => __( 'Footer Menu', 'softuni' ),
+    ) );
+}
+add_action( 'after_setup_theme', 'softuni_register_nav_menu', 0 );
