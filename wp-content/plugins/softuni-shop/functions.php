@@ -146,7 +146,7 @@ function softuni_display_other_product( $products_id ){
         ?>
             <ul class="products-listing">
                 <?php foreach( $products_query->posts as $product ) {?>
-                    <!-- <?php var_dump( $product); ?> -->
+                    <?php //var_dump( $product); ?>
                     <li class="product-card">
                 <div class="product-primary">
 
@@ -181,3 +181,40 @@ function softuni_display_other_product( $products_id ){
         <?php
     }
 }
+
+
+/**
+ * Shortcode Display current username if user logged in
+ *
+ * @return void
+ */
+function softuni_display_username() {
+    // is logged user
+    $output = '';
+
+    if ( is_user_logged_in() == true ) {
+        $current_user = wp_get_current_user();
+        $user_display_name = $current_user->data->display_name;
+        // var_dump( $user_display_name ); 
+        $output = ' Hello, '. $user_display_name . ', enjoy the article </br>';
+    } else {
+        $output = ' Please, logged in </br>' ;
+    }
+    return $output;
+}
+add_shortcode( 'display_username', 'softuni_display_username' );
+
+
+/**
+ * Shortcode  display the product details (name, image, and URL)
+ *
+ * @return void
+ */
+function softuni_display_product_details() {
+       
+    $output = get_template_part( 'template-parts/shortcode-display-info', 'item' );
+  
+    return $output;
+
+}
+add_shortcode( 'display_product_details', 'softuni_display_product_details' );
