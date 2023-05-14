@@ -1,4 +1,4 @@
-single.php
+single-shop.php
 <?php get_header(); ?>
 
 	<div class="product-single">
@@ -6,16 +6,17 @@ single.php
 			<div class="product-card">
 				<div class="product-primary">
 					<header class="product-header">
-						<h1 class="product-title"><a href="#">HAIER HW80-B14939-S 8.0 kg, 1400 rot/min</a></h1>
+						<h1 class="product-title"><a href="#"><?php the_title(); ?></a></h1>
 						<div class="product-meta">
 							<a class="meta-shockcode" href="#">Code: 650204111</a>
-							<span class="meta-price">$ 179.99</span>
+							<span class="meta-price">$ 179.99</span></br>
+                            <span class="meta-date">Product visits:  <?php echo get_post_meta(get_the_ID(), 'visits_count', true); ?></span>
 						</div>		
 						<div class="product-details product-details-table">
-							<span>Type</span><span>Washing machine</span>	
-							<span>Brand</span><span>HAIER</span>
-							<span>Model</span><span>HW80-B14939-S</span>
-						</div>
+							<span>Type</span><span><?php echo softuni_display_single_term( get_the_ID(), 'product_type'); ?></span>	
+							<span>Brand</span><span><?php echo softuni_display_single_term( get_the_ID(), 'brand'); ?></span>
+							<span>Model</span><span><?php echo softuni_display_single_term( get_the_ID(), 'model'); ?></span>
+                        </div>
 
 						<div class="product-details product-details-tags">
 							<div class="product-details-label">Tags</div>
@@ -49,8 +50,9 @@ single.php
 					?>
 				</div>
 			</div>
+            <a id="<?php echo get_the_ID(); ?>" class="like-button" href="#">Like (<?php echo get_post_meta( get_the_ID(), 'likes', true )?>)</a>
 			<a href="#" class="button button-wide">Buy now</a>
-		</aside>
+        </aside>
 	</div>
 
 	<h2 class="section-heading">Other related products:</h2>
