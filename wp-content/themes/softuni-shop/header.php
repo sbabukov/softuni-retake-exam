@@ -17,5 +17,9 @@
 <body>
 	<div class="site-wrapper">
 		<header class="site-header">
-			<h1 class="site-title"><a href="#">Online Shop</a></h1>
+        <?php if ( is_home() ): ?>
+			<h1 class="site-title"><a href="<?php echo esc_url( get_home_url()); ?>">Online Shop</a></h1>
+			<?php else: ?>
+				<p class="site-title"><a href="<?php echo esc_url( get_home_url()); ?>">Online Shop</a></p>
+			<?php endif; ?>
 		</header>

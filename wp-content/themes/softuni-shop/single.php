@@ -5,7 +5,7 @@
 			<div class="product-card">
 				<div class="product-primary">
 					<header class="product-header">
-						<h2 class="product-title"><a href="#">HAIER HW80-B14939-S 8.0 kg, 1400 rot/min</a></h2>
+						<h1 class="product-title"><a href="#">HAIER HW80-B14939-S 8.0 kg, 1400 rot/min</a></h1>
 						<div class="product-meta">
 							<a class="meta-shockcode" href="#">Code: 650204111</a>
 							<span class="meta-price">$ 179.99</span>
